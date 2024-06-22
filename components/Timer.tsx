@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import Confetti from "./Confetti"; // Import your Confetti component
-import MyButton from "./MyButton";
+
 
 interface TimeDisplayValuesType {
   years: number;
@@ -40,7 +40,7 @@ const generateTimeDisplay = (): TimeDisplayValuesType => {
 };
 
 const Counter: React.FC<CounterType> = ({ displayValue, label }) => (
-  <div className="bg-gray-900 bg-opacity-30 rounded-lg flex flex-col text-red-400 font-mono text-4xl font-thin leading-none p-8 text-center">
+  <div className="bg-gray-900 bg-opacity-50 rounded-lg flex flex-col text-red-400 font-mono text-4xl font-thin leading-none p-8 text-center">
     <h2 className="text-white font-bold text-2xl font-light uppercase mt-5 overflow-hidden text-ellipsis whitespace-nowrap w-full">
       {label}
     </h2>
