@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import Confetti from "./Confetti"; // Import your Confetti component
+import MyButton from "./MyButton";
 
 interface TimeDisplayValuesType {
   years: number;
@@ -38,7 +39,6 @@ const generateTimeDisplay = (): TimeDisplayValuesType => {
   };
 };
 
-// Counter component remains unchanged
 const Counter: React.FC<CounterType> = ({ displayValue, label }) => (
   <div className="bg-gray-900 bg-opacity-30 rounded-lg flex flex-col text-red-400 font-mono text-4xl font-thin leading-none p-8 text-center">
     <h2 className="text-white font-bold text-2xl font-light uppercase mt-5 overflow-hidden text-ellipsis whitespace-nowrap w-full">
@@ -48,17 +48,17 @@ const Counter: React.FC<CounterType> = ({ displayValue, label }) => (
   </div>
 );
 
-// Timer component
 const Timer: React.FC = () => {
-  const [timeDisplay, setTimeDisplay] = useState<TimeDisplayValuesType>(generateTimeDisplay);
+  const [timeDisplay, setTimeDisplay] = useState<TimeDisplayValuesType | null>(null);
   const [countdownFinished, setCountdownFinished] = useState<boolean>(false);
 
   useEffect(() => {
+    setTimeDisplay(generateTimeDisplay());
+
     const interval = setInterval(() => {
       const newTimeDisplay = generateTimeDisplay();
       setTimeDisplay(newTimeDisplay);
 
-      // Check if countdown has reached zero
       if (
         newTimeDisplay.years === 0 &&
         newTimeDisplay.days === 0 &&
@@ -67,12 +67,16 @@ const Timer: React.FC = () => {
         newTimeDisplay.seconds === 0
       ) {
         setCountdownFinished(true);
-        clearInterval(interval); // Stop the interval when countdown finishes
+        clearInterval(interval); 
       }
     }, 1000);
 
     return () => clearInterval(interval);
   }, []);
+
+  if (!timeDisplay) {
+    return null; // Or a loading spinner, if preferred
+  }
 
   return (
     <div className="text-white flex min-h-screen">
@@ -89,7 +93,7 @@ const Timer: React.FC = () => {
           <Counter displayValue={timeDisplay.minutes} label="Minutes" />
           <Counter displayValue={timeDisplay.seconds} label="Secondes" />
         </div>
-        {countdownFinished && <Confetti />} {/* Render Confetti when countdownFinished */}
+        {countdownFinished && <Confetti />} 
       </section>
     </div>
   );

@@ -20,5 +20,5 @@ body {
   color: rgb(var(--foreground-rgb));
   background-image: url("/bg-yann.png");
   background-size: cover;
-  background-position: center;
+  background-position:center;
 }
