@@ -83,7 +83,7 @@ const Timer: React.FC = () => {
       <section className="m-auto p-2 md:p-16">
         <header className="mb-8">
           <h1 className="font-bold text-5xl sm:text-7xl text-center uppercase text-center tracking-widest">
-            La retraite c'est dans :
+            La retraite c&apos;est dans :
           </h1>
         </header>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-5 sm:gap-x-8">
